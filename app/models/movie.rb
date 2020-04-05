@@ -13,5 +13,6 @@
 #
 
 class Movie < ApplicationRecord
+  validates_with TitleBracketsValidator
   belongs_to :genre
 end
