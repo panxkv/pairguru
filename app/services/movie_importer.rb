@@ -12,6 +12,8 @@ class MovieImporter < ApplicationService
     fetch_data(@title)
   end
 
+  private
+
   def movie_url(title)
     BASE_URL + title.gsub(" ", "%20")
   end
