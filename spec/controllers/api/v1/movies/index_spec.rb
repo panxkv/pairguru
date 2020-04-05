@@ -14,21 +14,27 @@ describe API::V1::Movies::Index, type: :request do
 
     its(:status) { is_expected.to eq 200 }
 
-    context "when user pass no params" do
+    context "when user no pass params" do
       describe "returns movie without genre" do
         subject(:body) do
           request.parsed_body.map(&:symbolize_keys)
         end
 
-        it "returns collection without genre" do
+        it "returns collection including id and title" do
           body.each do |movie|
             expect(body).to include_hash_matching(id: movie[:id], title: movie[:title])
+          end
+        end
+
+        it "returns collection without genre" do
+          body.each do |movie|
+            expect(body).to_not include_hash_matching(genre: movie[:genre])
           end
         end
       end
     end
 
-    context "when user pass with_genre params" do
+    context "when user pass true with_genre params" do
       let(:params) { { with_genre: true } }
       subject(:body) do
         request.parsed_body.map(&:symbolize_keys)

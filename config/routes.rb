@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  mount API::Base => "/api"
 
   root "home#welcome"
   resources :genres, only: :index do

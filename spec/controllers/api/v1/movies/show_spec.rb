@@ -14,14 +14,20 @@ describe API::V1::Movies::Show, type: :request do
 
     its(:status) { is_expected.to eq 200 }
 
-    context "when user pass no params" do
+    context "when user no pass params" do
       describe "returns movie without genre" do
         subject do
-          request.parsed_body.symbolize_keys
+          request.parsed_body.with_indifferent_access
         end
 
         its([:id]) { is_expected.to eq movie.id }
         its([:title]) { is_expected.to eq movie.title }
+        its([:genre]) do
+          is_expected.to_not match ({ "id": movie.genre.id,
+                                  "name": movie.genre.name,
+                                  "movies_count": movie.genre.movies.count })
+        end
+
       end
     end
 
@@ -32,9 +38,9 @@ describe API::V1::Movies::Show, type: :request do
           request.parsed_body.with_indifferent_access
         end
 
-        its(["id"]) { is_expected.to eq movie.id }
-        its(["title"]) { is_expected.to eq movie.title }
-        its(["genre"]) do
+        its([:id]) { is_expected.to eq movie.id }
+        its([:title]) { is_expected.to eq movie.title }
+        its([:genre]) do
           is_expected.to match ({ "id": movie.genre.id,
                                   "name": movie.genre.name,
                                   "movies_count": movie.genre.movies.count })
