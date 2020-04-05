@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  mount API::Base => "/api"
 
   root "home#welcome"
   get "movie_data/:id" => "movies#movie_data", as: :movie_data
