@@ -1,4 +1,4 @@
-class MovieDecorator < Draper::Decorator
+class MovieDecorator < ApplicationDecorator
   delegate_all
 
   def cover
