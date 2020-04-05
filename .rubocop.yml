@@ -6,7 +6,9 @@ AllCops:
   Exclude:
   - "vendor/**/*"
   - "db/**/*"
+  - 'bin/*'
   - "config/environments/**/*"
+  - "config/initializers/**/*"
   DisplayCopNames: false
   StyleGuideCopsOnly: false
 Rails:
