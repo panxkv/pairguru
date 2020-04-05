@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   mount API::Base => "/api"
 
   root "home#welcome"
+  get "movie_data/:id" => "movies#movie_data", as: :movie_data
+  get "movie_poster/:id" => "movies#movie_poster", as: :movie_poster
+
   resources :genres, only: :index do
     member do
       get "movies"
