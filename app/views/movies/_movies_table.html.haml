@@ -4,7 +4,7 @@
       %tr
         %td= i + 1
         %td
-          %img.img-rounded{ src: movie.cover }
+          = render_async movie_poster_path(movie), retry_count: 2, error_message: t("errors.movie_poster_fail")
         %td
           %h4
             = link_to movie.title, movie_path(movie)
@@ -12,4 +12,6 @@
             %strong
               = link_to movie.genre.name, movies_genre_path(movie.genre)
             = ' (' + movie.released_at.to_s + ')'
-          %p= movie.description
+          %p
+            = movie.description
+            = render_async movie_data_path(movie), retry_count: 2, error_message: t("errors.movie_data_fail")

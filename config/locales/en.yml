@@ -30,4 +30,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  movies:
+    rating: "Rating"
+  errors:
+    movie_data_fail: "Cannot fetch movie data"
+    movie_poster_fail: "Cannot fetch movie poster"
   hello: "Hello world"
