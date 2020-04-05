@@ -1,5 +1,8 @@
 %h1= @movie.title
 .jumbotron
-  = @movie.description
+  = render_async movie_poster_path(@movie), retry_count: 2, error_message: t("errors.movie_poster_fail")
+  %p= @movie.description
+  = render_async movie_data_path(@movie), retry_count: 2, error_message: t("errors.movie_data_fail")
+
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
