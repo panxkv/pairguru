@@ -24,10 +24,9 @@ describe API::V1::Movies::Show, type: :request do
         its([:title]) { is_expected.to eq movie.title }
         its([:genre]) do
           is_expected.to_not match ({ "id": movie.genre.id,
-                                  "name": movie.genre.name,
-                                  "movies_count": movie.genre.movies.count })
+                                      "name": movie.genre.name,
+                                      "movies_count": movie.genre.movies.count })
         end
-
       end
     end
 
